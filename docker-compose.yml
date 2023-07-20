@@ -5,11 +5,12 @@ services:
     build: .
     volumes:
       - ./src:/src:cached
-      # - node_modules:/src/node_modules
+      #- node_modules:/src/node_modules
       # ↑ 次回起動後にコメントアウトを解除
     working_dir: "/src"
     ports:
       - "3000:3000"
+      - "24678:24678"
     tty: true
     environment:
       - HOST=0.0.0.0
