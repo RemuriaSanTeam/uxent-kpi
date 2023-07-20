@@ -1,0 +1,13 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+    h1 {
+        @apply font-extrabold text-2xl
+    }
+    .card-item{
+        @apply border-pink-600
+    }
+    
+}
