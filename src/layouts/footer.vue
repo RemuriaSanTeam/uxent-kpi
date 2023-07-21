@@ -1,3 +1,3 @@
 <template>
-  <p>&copy;taisei</p>
+  <p class="text-center my-0.5">&copy;taisei</p>
 </template>

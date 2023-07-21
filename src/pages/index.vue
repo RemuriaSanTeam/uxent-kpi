@@ -1,8 +1,13 @@
 <template>
   <h1 class="page-title">メインページ</h1>
-  <div class="product-item w-full grid gap-x-8 grid-cols-3">
-    <CardItem />
-  </div>
+  <ul class="flex flex-row justify-center">
+    <li class="category">甘ロリ</li>
+    <li class="category">ゴスロリ</li>
+    <li class="category">クラロリ</li>
+    <li class="category">華ロリ</li>
+    <li class="category">皇子ロリ</li>
+  </ul>
+  <CardItem />
 </template>
 <style scoped>
 .article {

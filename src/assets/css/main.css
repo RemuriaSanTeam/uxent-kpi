@@ -9,5 +9,8 @@
     .card-item{
         @apply border-pink-600
     }
+    .category{
+        @apply px-10 border-2 border-fuchsia-900
+    }
     
 }
