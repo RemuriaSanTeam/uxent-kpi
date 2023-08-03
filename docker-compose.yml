@@ -16,6 +16,17 @@ services:
       - HOST=0.0.0.0
       - port=3000
       - CHOKIDAR_USEPOLLING=true
-
+  nginx:
+    build:
+      dockerfile: "./docker/nginx/Dockerfile"
+    ports:
+      - "8080:80"
+    volumes:
+      - "./src:/var/www/html"
+  php-fpm:
+    build:
+      dockerfile: "./docker/php-fpm/Dockerfile"
+    volumes:
+      - "./src:/var/www/html"
 volumes:
   node_modules:

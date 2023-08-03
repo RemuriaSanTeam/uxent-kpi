@@ -1,32 +1,30 @@
+/*
 import type { IncomingMessage, ServerResponse } from "http";
 import axios from "axios";
+import config from "#config";
 
-const ENDPOINT = ""; //yahooのapiを組み込む
+let url: string = `https://${config.yahoo}.yahoo.io/api/`;
 const API_HEAD = {
   headers: {
-    Authorization: `Bearer ${process.env.access_token}`,
-    // access_tokenは本来環境変数にするものではないです。力尽きました。ごめんなさい。
-    "X-Api-Version": "2023-08-02",
-    accept: "application/json",
+    "X-MICROCMS-API-KEY": config.MICRO_CMS_API_KEY,
   },
 };
 
 export default async (req: IncomingMessage, res: ServerResponse) => {
   if (req.method != "GET") {
     console.log(req.method);
-    res.statusCode = 448;
+    res.statusCode = 500;
     res.end();
   }
 
-  let data: Array<any>;
-  await axios
-    .get(`${ENDPOINT}?company_id=${process.env.company_id}&limit=50`, API_HEAD)
-    .then((res) => {
-      data = res.data.deals;
-    });
-
+  let data: Array;
+  await axios.get(`${url}`, API_HEAD).then((res) => {
+    data = res.data;
+  });
   const json = JSON.stringify(data);
+
   res.statusCode = 200;
   res.setHeader("Content-Type", "application/json");
   res.end(json);
 };
+*/
