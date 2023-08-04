@@ -4,7 +4,7 @@ import axios from "axios";
 let url: string = `https://shopping.yahooapis.jp/ShoppingWebService/V3/itemSearch`;
 const API_HEAD = {
   headers: {
-    "X-MICROCMS-API-KEY": config.MICRO_CMS_API_KEY,
+    "X-MICROCMS-API-KEY": `https://shopping.yahooapis.jp/ShoppingWebService/V3/itemSearch`,
   },
 };
 
