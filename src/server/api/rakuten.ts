@@ -1,12 +1,11 @@
-/*
 import type { IncomingMessage, ServerResponse } from "http";
 import axios from "axios";
 import config from "#config";
 
-let url: string = `https://${config.rakuten}.yakuten.io/api/`;
+let url: string = `https://app.rakuten.co.jp/services/api/IchibaItem/Search/20220601`;
 const API_HEAD = {
   headers: {
-    "X-MICROCMS-API-KEY": config.MICRO_CMS_API_KEY,
+    "X-MICROCMS-API-KEY": `https://app.rakuten.co.jp/services/api/IchibaItem/Search/20220601`,
   },
 };
 
@@ -27,4 +26,3 @@ export default async (req: IncomingMessage, res: ServerResponse) => {
   res.setHeader("Content-Type", "application/json");
   res.end(json);
 };
-*/

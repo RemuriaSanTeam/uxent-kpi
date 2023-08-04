@@ -1,9 +1,7 @@
-/*
 import type { IncomingMessage, ServerResponse } from "http";
 import axios from "axios";
-import config from "#config";
 
-let url: string = `https://${config.yahoo}.yahoo.io/api/`;
+let url: string = `https://shopping.yahooapis.jp/ShoppingWebService/V3/itemSearch`;
 const API_HEAD = {
   headers: {
     "X-MICROCMS-API-KEY": config.MICRO_CMS_API_KEY,
@@ -27,4 +25,3 @@ export default async (req: IncomingMessage, res: ServerResponse) => {
   res.setHeader("Content-Type", "application/json");
   res.end(json);
 };
-*/
