@@ -12,5 +12,8 @@
     .category{
         @apply px-10 border-2 border-fuchsia-900
     }
+    .item-element{
+        @apply p-1.5 border-2 border-l-zinc-950
+    }
     
 }

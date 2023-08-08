@@ -1,27 +1,33 @@
-import type { IncomingMessage, ServerResponse } from "http";
-import axios from "axios";
 
-let url: string = `https://shopping.yahooapis.jp/ShoppingWebService/V3/itemSearch`;
+import type { IncomingMessage, ServerResponse } from "http";
+import axios from 'axios'
+import config from '#config'
+
+let url: string = `https://${config.MICRO_CMS_SERVICE_DOMAIN}.microcms.io/api/v1/blog`
 const API_HEAD = {
   headers: {
-    "X-MICROCMS-API-KEY": `https://shopping.yahooapis.jp/ShoppingWebService/V3/itemSearch`,
-  },
-};
+    "X-MICROCMS-API-KEY": config.MICRO_CMS_API_KEY,
+  }
+}
 
 export default async (req: IncomingMessage, res: ServerResponse) => {
-  if (req.method != "GET") {
-    console.log(req.method);
-    res.statusCode = 500;
-    res.end();
+  if (req.method != 'GET') {
+    console.log(req.method)
+    res.statusCode = 500
+    res.end()
   }
 
-  let data: Array;
-  await axios.get(`${url}`, API_HEAD).then((res) => {
+
+  let data: Array
+  await axios.get(
+    `${url}`,
+    API_HEAD
+  ).then(res => {
     data = res.data;
   });
-  const json = JSON.stringify(data);
+  const json = JSON.stringify(data)
 
-  res.statusCode = 200;
-  res.setHeader("Content-Type", "application/json");
-  res.end(json);
-};
+  res.statusCode = 200
+  res.setHeader('Content-Type', 'application/json')
+  res.end(json)
+}
