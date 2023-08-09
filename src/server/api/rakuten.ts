@@ -1,13 +1,13 @@
 import type { IncomingMessage, ServerResponse } from "http";
 import axios from "axios";
-import config from "#config";
+import * as dotenv from "dotenv";
+dotenv.config();
 
-let url: string = `https://app.rakuten.co.jp/services/api/IchibaItem/Search/20220601`;
-const API_HEAD = {
-  headers: {
-    "X-MICROCMS-API-KEY": `https://app.rakuten.co.jp/services/api/IchibaItem/Search/20220601`,
-  },
-};
+// 楽天APIの設定
+const rakutenApiUrl =
+  "https://app.rakuten.co.jp/services/api/IchibaItem/Search/20220601";
+const apiKey = process.env.RAKUTEN_API_KEY; // あなたの楽天APIキー
+const searchQuery = "your search query"; // 検索クエリ
 
 export default async (req: IncomingMessage, res: ServerResponse) => {
   if (req.method != "GET") {
@@ -16,13 +16,31 @@ export default async (req: IncomingMessage, res: ServerResponse) => {
     res.end();
   }
 
-  let data: Array;
-  await axios.get(`${url}`, API_HEAD).then((res) => {
-    data = res.data;
-  });
-  const json = JSON.stringify(data);
+  // 楽天APIへのリクエスト
+  try {
+    const rakutenApiParams = {
+      applicationId: apiKey,
+      keyword: searchQuery,
+      // 他の必要なパラメータを追加できます
+    };
 
-  res.statusCode = 200;
-  res.setHeader("Content-Type", "application/json");
-  res.end(json);
+    const rakutenApiResponse = await axios.get(rakutenApiUrl, {
+      params: rakutenApiParams,
+    });
+    const rakutenApiData = rakutenApiResponse.data;
+
+    const responseData = {
+      rakutenApiData: rakutenApiData,
+    };
+
+    const json = JSON.stringify(responseData);
+
+    res.statusCode = 200;
+    res.setHeader("Content-Type", "application/json");
+    res.end(json);
+  } catch (error) {
+    console.error("Error:", error);
+    res.statusCode = 500;
+    res.end();
+  }
 };

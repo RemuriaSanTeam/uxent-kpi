@@ -1,33 +1,46 @@
-
 import type { IncomingMessage, ServerResponse } from "http";
-import axios from 'axios'
-import config from '#config'
+import axios from "axios";
+import * as dotenv from "dotenv";
+dotenv.config();
 
-let url: string = `https://${config.MICRO_CMS_SERVICE_DOMAIN}.microcms.io/api/v1/blog`
-const API_HEAD = {
-  headers: {
-    "X-MICROCMS-API-KEY": config.MICRO_CMS_API_KEY,
-  }
-}
+// YahooショッピングAPIの設定
+const yahooShoppingApiUrl =
+  "https://shopping.yahooapis.jp/ShoppingWebService/V3/itemSearch";
+const apiKey = process.env.YAHOO_API_KEY; // あなたのYahoo APIキー
+const searchQuery = "your search query"; // 検索クエリ
 
 export default async (req: IncomingMessage, res: ServerResponse) => {
-  if (req.method != 'GET') {
-    console.log(req.method)
-    res.statusCode = 500
-    res.end()
+  if (req.method != "GET") {
+    console.log(req.method);
+    res.statusCode = 500;
+    res.end();
   }
 
+  // YahooショッピングAPIへのリクエスト
+  try {
+    const yahooApiParams = {
+      appid: apiKey,
+      query: searchQuery,
+      // 他の必要なパラメータを追加できます
+    };
 
-  let data: Array
-  await axios.get(
-    `${url}`,
-    API_HEAD
-  ).then(res => {
-    data = res.data;
-  });
-  const json = JSON.stringify(data)
+    const yahooApiResponse = await axios.get(yahooShoppingApiUrl, {
+      params: yahooApiParams,
+    });
+    const yahooApiData = yahooApiResponse.data;
 
-  res.statusCode = 200
-  res.setHeader('Content-Type', 'application/json')
-  res.end(json)
-}
+    const responseData = {
+      yahooShoppingApiData: yahooApiData,
+    };
+
+    const json = JSON.stringify(responseData);
+
+    res.statusCode = 200;
+    res.setHeader("Content-Type", "application/json");
+    res.end(json);
+  } catch (error) {
+    console.error("Error:", error);
+    res.statusCode = 500;
+    res.end();
+  }
+};

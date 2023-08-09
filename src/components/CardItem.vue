@@ -9,3 +9,7 @@
     </div>
   </div>
 </template>
+<script setup>
+const yahoo_api = await useFetch("/api/yahoo", {});
+const rakuten_api = await useFetch("/api/rakuten", {});
+</script>
