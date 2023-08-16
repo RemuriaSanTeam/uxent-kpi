@@ -1,11 +1,21 @@
 <template>
   <h1 class="page-title">メインページ</h1>
   <ul class="flex flex-row justify-center">
-    <li class="category">メンズ</li>
-    <li class="category">レディース</li>
-    <li class="category">ユニセックス</li>
-    <li class="category">ボーイズ</li>
-    <li class="category">ガールズ</li>
+    <li class="category_list">
+      <button @click="category('mens')">メンズ</button>
+    </li>
+    <li class="category_list">
+      <button @click="category('women')">レディース</button>
+    </li>
+    <li class="category_list">
+      <button @click="category('unisex')">ユニセックス</button>
+    </li>
+    <li class="category_list">
+      <button @click="category('boys')">ボーイズ</button>
+    </li>
+    <li class="category_list">
+      <button @click="category('girls')">ガールズ</button>
+    </li>
   </ul>
   <CardItem />
 </template>
