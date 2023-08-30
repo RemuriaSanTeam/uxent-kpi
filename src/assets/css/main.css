@@ -9,11 +9,14 @@
     .card-item{
         @apply border-pink-600
     }
-    .category{
-        @apply px-10 border-2 border-fuchsia-900
+    .category_list{
+        @apply px-10 border-2 border-fuchsia-500
     }
     .item-element{
         @apply p-1.5 border-2 border-l-zinc-950
+    }
+    .item-border{
+        @apply p-1.5 border-2 border-pink-300 m-2
     }
     
 }
