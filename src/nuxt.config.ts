@@ -8,4 +8,11 @@ export default defineNuxtConfig({
       autoprefixer: {},
     },
   },
+  $meta: {
+    script: [
+      {
+        src: "https://s.yimg.jp/images/yjdn/js/bakusoku-jsonp-v1.js",
+      },
+    ],
+  },
 });
